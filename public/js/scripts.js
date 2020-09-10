@@ -377,6 +377,13 @@ function initNastik() {
             icon: greenIcon
         }).addTo(map).bindPopup(popupTextit).openPopup();
     }
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
     //   Contact form------------------
     $("#contactform").submit(function () {
         var a = $(this).attr("action");
@@ -396,6 +403,7 @@ function initNastik() {
                 $("#message").slideDown("slow");
                 $("#submit").removeAttr("disabled");
                 if (null != a.match("success")) $("#contactform").slideDown("slow");
+                $('#contactform')[0].reset();
             });
         });
         return false;

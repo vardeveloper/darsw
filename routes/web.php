@@ -12,10 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('layouts.app');
+    return view('pages.home');
 });
 
 Route::get('contact', 'HomeController@contact')->name('contact');
+
+Route::post('send', 'HomeController@send')->name('send');
 
 Route::get('portfolio', 'HomeController@portfolio')->name('portfolio');
 
