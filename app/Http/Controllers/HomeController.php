@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,6 +11,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use TCG\Voyager\Models\Category;
 
 class HomeController extends BaseController
 {
@@ -105,7 +107,21 @@ class HomeController extends BaseController
 
     public function portfolio()
     {
-        return view('pages.portfolio');
+        $categories = Category::orderBy('name')->get();
+        
+        $projects = Project::where('status', 1)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        foreach ($projects as $project) {
+            $images = json_decode($project->images);
+            foreach ($images as $image) {
+                $project->image = $image;
+                break;
+            }
+        }
+
+        return view('pages.portfolio', compact('projects', 'categories'));
     }
 
 }

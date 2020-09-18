@@ -89,10 +89,9 @@
                 </div>
                 <div class="gallery-filters inline-dark-filters">
                     <a href="#" class="gallery-filter  gallery-filter-active" data-filter="*">All projects</a>
-                    <a href="#" class="gallery-filter" data-filter=".web">Web Design</a>
-                    <a href="#" class="gallery-filter" data-filter=".photography">Photo</a>
-                    <a href="#" class="gallery-filter" data-filter=".branding">Branding</a>
-                    <a href="#" class="gallery-filter" data-filter=".uides">Ui Design</a>
+                    @foreach ($categories as $category)
+                    <a href="#" class="gallery-filter" data-filter=".{{ $category->slug }}"> {{ $category->name }} </a>
+                    @endforeach
                 </div>
                 <div class="folio-counter">
                     <div class="num-album"></div>
@@ -101,202 +100,226 @@
             </div>
             <!--fixed-top-panel end -->
             <!-- portfolio start -->
-            <div class="gallery-items min-pad  four-column   fl-wrap  ">
-                <!-- gallery-item-->
-                <div class="gallery-item  web branding">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Design  </a> <a href="#"> Branding</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Kent Brant Concept<i class="fal fa-long-arrow-right"></i></a>
+            <div class="gallery-items min-pad four-column fl-wrap">
+
+                @if (!empty($projects))
+                    @foreach ($projects as $project)
+                    <div class="gallery-item {{ $project->category()->slug }} ">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="{{ Voyager::image($project->thumbnail('cropped')) }}" alt="">
+                            <a href="{{ Voyager::image($project->image) }}" class="box-media-zoom image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a> {{ $project->category()->name }} </a></div>
+                                <div class="grid-det-item">
+                                    <a href="#" class="ajax grid-det_link"> {{ $project->name }} <i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item photography">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#"> Photography  </a> <a href="#"> Development</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Old Cars on Street<i class="fal fa-long-arrow-right"></i></a>
+                        <div class="pr-bg"></div>
+                        </div>
+                    @endforeach
+                @endif
+
+                {{--
+
+                    <!-- gallery-item-->
+                    <div class="gallery-item  web branding">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Design  </a> <a href="#"> Branding</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Kent Brant Concept<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item gallery-item-second branding ">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Development </a>  <a href="#"> Branding</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Mobile ui Interface<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item photography">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#"> Photography  </a> <a href="#"> Development</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Old Cars on Street<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item web">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Video  </a> <a href="#"> Branding</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Video Project<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item gallery-item-second branding ">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Development </a>  <a href="#"> Branding</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Mobile ui Interface<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item web branding">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Photography  </a> <a href="#"> Web </a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Barbershop Website<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item web">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Video  </a> <a href="#"> Branding</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Video Project<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item photography">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Photography  </a> <a href="#"> Ui</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Man in Old Town<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item web branding">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Photography  </a> <a href="#"> Web </a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Barbershop Website<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item web">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="https://www.youtube.com/watch?v=Hg5iNVSp2z8" class="box-media-zoom   image-popup"><i class="fal fa-play"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Video  </a><a href="#"> Web design</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Youtube Video Project<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item photography">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Photography  </a> <a href="#"> Ui</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Man in Old Town<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item uides photography">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Development  </a> <a href="#">Ui</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Mobile ui Interface<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item web">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="https://www.youtube.com/watch?v=Hg5iNVSp2z8" class="box-media-zoom   image-popup"><i class="fal fa-play"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Video  </a><a href="#"> Web design</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Youtube Video Project<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item web photography">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="https://vimeo.com/6698875" class="box-media-zoom   image-popup"><i class="fal fa-play"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Development  </a>  <a href="#"> Video</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Project Vimeo<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item uides photography">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Development  </a> <a href="#">Ui</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Mobile ui Interface<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item interior houses ">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Architecture</a> <a href="#">Design</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Architecture Agensy<i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item web photography">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="https://vimeo.com/6698875" class="box-media-zoom   image-popup"><i class="fal fa-play"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Development  </a>  <a href="#"> Video</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Project Vimeo<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item web uides">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Development   </a> <a href="#"> Wed Design</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Pen Tower <i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item interior houses ">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Architecture</a> <a href="#">Design</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Architecture Agensy<i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->
-                <!-- gallery-item-->
-                <div class="gallery-item web uides">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Development   </a> <a href="#"> Wed Design</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Pen Tower <i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item web uides">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Development   </a> <a href="#"> Wed Design</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Pen Tower <i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->                                                        
-                <!-- gallery-item-->
-                <div class="gallery-item web uides">
-                    <div class="grid-item-holder hov_zoom">
-                        <img  src="images/folio/1.jpg"    alt="">
-                        <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
-                        <div class="grid-det">
-                            <div class="grid-det_category"><a href="#">Development   </a> <a href="#"> Wed Design</a></div>
-                            <div class="grid-det-item">
-                                <a href="portfolio-single.html" class="ajax grid-det_link">Pen Tower <i class="fal fa-long-arrow-right"></i></a>
+                    <!-- gallery-item end-->
+                    <!-- gallery-item-->
+                    <div class="gallery-item web uides">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Development   </a> <a href="#"> Wed Design</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Pen Tower <i class="fal fa-long-arrow-right"></i></a>
+                                </div>
                             </div>
                         </div>
+                        <div class="pr-bg"></div>
                     </div>
-                    <div class="pr-bg"></div>
-                </div>
-                <!-- gallery-item end-->                                                       
+                    <!-- gallery-item end-->                                                        
+                    <!-- gallery-item-->
+                    <div class="gallery-item web uides">
+                        <div class="grid-item-holder hov_zoom">
+                            <img  src="images/folio/1.jpg"    alt="">
+                            <a href="images/folio/1.jpg" class="box-media-zoom   image-popup"><i class="fal fa-search"></i></a>
+                            <div class="grid-det">
+                                <div class="grid-det_category"><a href="#">Development   </a> <a href="#"> Wed Design</a></div>
+                                <div class="grid-det-item">
+                                    <a href="portfolio-single.html" class="ajax grid-det_link">Pen Tower <i class="fal fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pr-bg"></div>
+                    </div>
+                    <!-- gallery-item end-->     
+                
+                --}}
+                
             </div>
             <!-- portfolio end -->
         </div>
