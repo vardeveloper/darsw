@@ -19,7 +19,9 @@ Route::get('contact', 'HomeController@contact')->name('contact');
 
 Route::post('send', 'HomeController@send')->name('send');
 
-Route::get('portfolio', 'HomeController@portfolio')->name('portfolio');
+Route::get('projects', 'HomeController@projects')->name('projects');
+
+Route::get('project/{slug}', 'HomeController@project')->name('project');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

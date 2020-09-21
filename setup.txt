@@ -23,3 +23,7 @@ php artisan storage:link
 
 https://voyager-docs.devdojo.com/getting-started/installation
 
+PENDING
+=======
+
+- 

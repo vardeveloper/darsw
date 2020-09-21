@@ -105,7 +105,7 @@ class HomeController extends BaseController
         return response()->json($resp, 401);
     }
 
-    public function portfolio()
+    public function projects()
     {
         $categories = Category::orderBy('name')->get();
         
@@ -121,7 +121,14 @@ class HomeController extends BaseController
             }
         }
 
-        return view('pages.portfolio', compact('projects', 'categories'));
+        return view('pages.projects', compact('projects', 'categories'));
+    }
+
+    public function project(Request $request)
+    {
+        $project = Project::where('slug', $request->slug)->where('status', 1)->firstOrFail();
+        $project->imagenes = json_decode($project->images);
+        return view("pages.project_{$project->template}", compact('project'));
     }
 
 }

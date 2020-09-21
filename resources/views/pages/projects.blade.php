@@ -111,7 +111,7 @@
                             <div class="grid-det">
                                 <div class="grid-det_category"><a> {{ $project->category()->name }} </a></div>
                                 <div class="grid-det-item">
-                                    <a href="#" class="ajax grid-det_link"> {{ $project->name }} <i class="fal fa-long-arrow-right"></i></a>
+                                    <a href="{{ route('project', $project->slug) }}" class="ajax grid-det_link"> {{ $project->name }} <i class="fal fa-long-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

@@ -17,7 +17,7 @@
         </ul>
     </div>
     <div class="folio-btn">
-        <a class="folio-btn-item ajax" href="/portfolio"></a>
-        <span class="folio-btn-tooltip">My Portfolio</span>
+        <a class="folio-btn-item ajax" href="/projects"></a>
+        <span class="folio-btn-tooltip">My Projects</span>
     </div>
 </header>

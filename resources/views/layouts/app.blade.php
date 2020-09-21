@@ -14,32 +14,22 @@
         <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
     </head>
     <body>
-        <!--loader-->
         <div class="loader-wrap color-bg">
             <div class="loader-bg"></div>
             <div class="loader-inner">
                 <div class="loader"></div>
             </div>
         </div>
-        <!--loader end-->
 
-        <!-- Main  -->
         <div id="main">
-            <!-- header-->
             @include('includes.header')
-            <!-- header end -->
             
-            <!-- wrapper -->
             @yield('content')
-            <!--wrapper end -->
 
-            <!-- cursor-->
             <div class="element">
                 <div class="element-item"></div>
-            </div>
-            <!-- cursor end-->          
+            </div>       
         </div>
-        <!-- Main end -->
 
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/plugins.js') }}"></script>
